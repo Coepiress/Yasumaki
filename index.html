@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yasumaki - Restaurante Japonês</title>
+    <style>
+        /* Variáveis de Cores baseadas no Logótipo */
+        :root {
+            --primary-blue: #0A2240;
+            --accent-red: #D9381E;
+            --accent-orange: #E65100;
+            --light-bg: #F9F9F9;
+            --white: #FFFFFF;
+            --dark-text: #222222;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        /* Header / Navegação */
+        header {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Badge que simula a estrutura do Logótipo YASUMAKI */
+        .logo-badge {
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-orange));
+            color: var(--white);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            letter-spacing: 1.5px;
+            border: 2px solid var(--white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .logo-text {
+            font-size: 0.9rem;
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-text span {
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-orange);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(10, 34, 64, 0.85), rgba(10, 34, 64, 0.85)), 
+                        url('https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            color: var(--white);
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: var(--accent-orange);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 25px;
+        }
+
+        .btn {
+            background-color: var(--accent-red);
+            color: var(--white);
+            padding: 12px 28px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 25px;
+            transition: background 0.3s, transform 0.2s;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-orange);
+            transform: translateY(-2px);
+        }
+
+        /* Menu / Destaques */
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin: 40px 0 20px;
+            color: var(--primary-blue);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent-red);
+            display: block;
+            margin: 8px auto 0;
+            border-radius: 2px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px 50px;
+        }
+
+        .card {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--accent-orange);
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Contactos */
+        .contacts-section {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .contacts-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 4px solid var(--accent-red);
+            padding: 20px 30px;
+            border-radius: 8px;
+            min-width: 280px;
+            text-align: left;
+        }
+
+        .contact-card h4 {
+            color: var(--accent-orange);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .contact-card a {
+            color: var(--white);
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+            transition: color 0.3s;
+        }
+
+        .contact-card a:hover {
+            color: var(--accent-orange);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #051324;
+            color: #aaa;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        footer strong {
+            color: var(--white);
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .contacts-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-card {
+                width: 100%;
+                max-width: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header com Logótipo -->
+    <header>
+        <div class="logo-container">
+            <div class="logo-badge">YASUMAKI</div>
+            <div class="logo-text">
+                REST. JAPONÊS
+                <span>Pires & Mil e Duzentas</span>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Início</a></li>
+                <li><a href="#menu">Especialidades</a></li>
+                <li><a href="#contacto">Contactos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Banner Principal -->
+    <section class="hero" id="home">
+        <h1>Yasumaki Restaurante</h1>
+        <p>A autêntica culinária japonesa preparada com os ingredientes mais frescos e selecionados[cite: 5].</p>
+        <a href="#contacto" class="btn">Faça a sua Reserva</a>
+    </section>
+
+    <!-- Menu / Destaques -->
+    <section id="menu">
+        <h2 class="section-title">Nossas Especialidades</h2>
+        <div class="menu-grid">
+            <div class="card">
+                <h3>Sushi & Sashimi</h3>
+                <p>Combinações frescas e preparadas na hora com o melhor corte de peixe[cite: 5].</p>
+            </div>
+            <div class="card">
+                <h3>Pratos Quentes</h3>
+                <p>Ramen reconfortante, Yakisoba tradicional e acompanhamentos crocantes[cite: 5].</p>
+            </div>
+            <div class="card">
+                <h3>Entradas Especiais</h3>
+                <p>Gyozas artesanais, Temakis variados e opções exclusivas para iniciar a sua refeição[cite: 5].</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Secção de Contactos -->
+    <section class="contacts-section" id="contacto">
+        <h2 class="section-title" style="color: var(--white);">Contactos & Redes Sociais</h2>
+        <div class="contacts-grid">
+            
+            <div class="contact-card">
+                <h4>Atendimento 1</h4>
+                <a href="https://instagram.com/e_m4rtinz" target="_blank">📷 Instagram: @e_m4rtinz</a>
+                <a href="https://wa.me/5514998446835" target="_blank">📱 WhatsApp: (14) 99844-6835</a>
+            </div>
+
+            <div class="contact-card">
+                <h4>Atendimento 2</h4>
+                <a href="https://instagram.com/Coepiress_" target="_blank">📷 Instagram: @Coepiress_</a>
+                <a href="https://wa.me/5514998481499" target="_blank">📱 WhatsApp: (14) 99848-1499</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2026 <strong>Yasumaki Restaurante Japonês</strong>. Todos os direitos reservados.</p>
+        <p style="margin-top: 5px; font-size: 0.85rem;">Desenvolvido por <strong>Desenvolvedora Miliduke e Pires</strong></p>
+    </footer>
+
+</body>
+</html>
